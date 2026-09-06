@@ -11,11 +11,31 @@ Licencia: [MIT](LICENSE)
 
 ## English summary
 
-FITOSAVIA is a low-cost, non-destructive **open-hardware IoT biosensor** that measures stem bioimpedance with an ESP32 + ADS1115 (16-bit) and compensates thermal drift with a DHT22. The goal is to flag early water stress in tomato **before** visual wilting. School prototype (EUREKA 2026, Peru) — not a medical or certified agricultural product.
+FITOSAVIA is a low-cost, non-destructive **open-hardware IoT biosensor** that measures stem bioimpedance with an ESP32 + ADS1115 (16-bit ADC) and compensates thermal drift with a DHT22. The goal is to flag early water stress in tomato **before** visual wilting. School prototype (EUREKA 2026, Peru) — not a medical or certified agricultural product.
 
-* Hardware list: [`hardware/BOM.md`](hardware/BOM.md) · Wiring: [`hardware/WIRING.md`](hardware/WIRING.md)
-* 30-minute setup: [`docs/QUICKSTART.md`](docs/QUICKSTART.md) · Safety: [`docs/SAFETY.md`](docs/SAFETY.md)
-* Want to help? Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and pick a [`good first issue`](https://github.com/haas26p-ctrl/fitosavia/labels/good%20first%20issue).
+### Hardware
+
+| Component | Role |
+|-----------|------|
+| ESP32 DevKit | Microcontroller, Wi-Fi, serial output |
+| ADS1115 | 16-bit differential ADC for bioimpedance |
+| DHT22 | Temperature + humidity for drift compensation |
+| 10 kΩ / 10 kΩ voltage divider | Empty-calibration reference (≈ 1.652 V) |
+| Stainless-steel probes | Non-contact stem impedance electrode |
+
+### Anti-electrolysis pulse
+
+The device applies a brief, controlled low-voltage pulse to the stem electrodes to prevent electrolytic corrosion. This keeps measurements stable over extended deployments and protects the probe from metallic fouling — a common failure mode in continuous bioimpedance sensing.
+
+### Calibration
+
+An empty (air) calibration with the 10 kΩ / 10 kΩ voltage divider should read approximately **1.652 V**. Deviations beyond ±0.05 V indicate wiring or component issues. See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for the full calibration procedure.
+
+### Quick links
+
+- Hardware list: [`hardware/BOM.md`](hardware/BOM.md) · Wiring: [`hardware/WIRING.md`](hardware/WIRING.md)
+- 30-minute setup: [`docs/QUICKSTART.md`](docs/QUICKSTART.md) · Safety: [`docs/SAFETY.md`](docs/SAFETY.md)
+- Want to help? Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and pick a [`good first issue`](https://github.com/haas26p-ctrl/fitosavia/labels/good%20first%20issue).
 
 ## Quick start
 
