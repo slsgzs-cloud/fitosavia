@@ -3,22 +3,21 @@
 #include <Adafruit_ADS1X15.h>
 
 #include "DHT.h"
+#include "config.h"
 
 Adafruit_ADS1115 ads; 
 
 // --- CONFIGURACIÓN DE PINES ---
 
-#define DHTPIN 4         // DHT22 conectado al pin D4
 
-#define DHTTYPE DHT22    // Modelo exacto de tu sensor
 
 DHT dht(DHTPIN, DHTTYPE);
 
-const int pinAlimentacion = 5; // Pin D5 para enviar energía a la planta (Agujas)
+
 
 void setup() {
 
-  Serial.begin(115200);
+  Serial.begin(SERIAL_BAUD);
 
   delay(1000); // Freno de 1 segundo para darle tiempo al Monitor Serie de despertar
 
@@ -26,7 +25,7 @@ void setup() {
 
   // Configuramos el pin de la planta como salida de energía
 
-  pinMode(pinAlimentacion, OUTPUT);
+  pinMode(PIN_ALIMENTACION, OUTPUT);
 
   digitalWrite(pinAlimentacion, LOW); // Lo mantenemos apagado por seguridad biológica
 
@@ -70,7 +69,7 @@ void loop() {
 
   // 2. Esperar a que la corriente se estabilice en el tejido (100 ms)
 
-  delay(100); 
+  delay(STABILIZATION_DELAY_MS); 
 
   
 
@@ -106,6 +105,6 @@ void loop() {
 
   // 5. Esperar hasta la siguiente medición (5 segundos para pruebas)
 
-  delay(5000); 
+  delay(SAMPLE_INTERVAL_MS); 
 
 }
