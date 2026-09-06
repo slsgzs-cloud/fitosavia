@@ -1,0 +1,22 @@
+name: Documentation
+description: Mejora de docs, typos, traducción / Docs improvement
+title: "[docs] "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideal para `good first issue`. Indica archivo y el cambio propuesto.
+  - type: input
+    id: file
+    attributes:
+      label: Archivo / File path
+      placeholder: "docs/QUICKSTART.md"
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Qué mejorar / Suggested change
+    validations:
+      required: true

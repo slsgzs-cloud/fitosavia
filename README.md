@@ -1,10 +1,29 @@
 # FITOSAVIA
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Good first issues](https://img.shields.io/github/labels/haas26p-ctrl/fitosavia/good%20first%20issue)](https://github.com/haas26p-ctrl/fitosavia/labels/good%20first%20issue)
+
 **Fitomonitoreo in-situ mediante biosensor de impedancia bioeléctrica** para diagnóstico de estrés hídrico temprano en *Solanum lycopersicum* (tomate).
 
 Proyecto escolar — Feria EUREKA 2026 (soluciones tecnológicas).  
 Autor: **Alessandro Sebastian Herrera Araoz** · I.E. Blas Pascal (Miraflores, Arequipa).  
 Licencia: [MIT](LICENSE)
+
+## English summary
+
+FITOSAVIA is a low-cost, non-destructive **open-hardware IoT biosensor** that measures stem bioimpedance with an ESP32 + ADS1115 (16-bit) and compensates thermal drift with a DHT22. The goal is to flag early water stress in tomato **before** visual wilting. School prototype (EUREKA 2026, Peru) — not a medical or certified agricultural product.
+
+* Hardware list: [`hardware/BOM.md`](hardware/BOM.md) · Wiring: [`hardware/WIRING.md`](hardware/WIRING.md)
+* 30-minute setup: [`docs/QUICKSTART.md`](docs/QUICKSTART.md) · Safety: [`docs/SAFETY.md`](docs/SAFETY.md)
+* Want to help? Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and pick a [`good first issue`](https://github.com/haas26p-ctrl/fitosavia/labels/good%20first%20issue).
+
+## Quick start
+
+1. Instala Arduino IDE + core ESP32 y las libs Adafruit ADS1X15, BusIO y DHT.
+2. Abre [`firmware/fitosavia/fitosavia.ino`](firmware/fitosavia/fitosavia.ino), sube al ESP32 y abre Serial a **115200**.
+3. (Opcional) Verifica calibración en vacío con divisor 10 kΩ/10 kΩ ≈ **1.652 V**.
+
+Guía completa: [`docs/QUICKSTART.md`](docs/QUICKSTART.md)
 
 ## Qué es
 
@@ -80,7 +99,8 @@ El factor `0.1875` mV/LSB corresponde al gain por defecto del ADS1115 (±6.144 V
 - Ensayo longitudinal de sequía controlada y curvas de decadencia  
 - Validación estadística multi-planta en campo  
 
-Método y notas: [`docs/METODO.md`](docs/METODO.md)
+Método y notas: [`docs/METODO.md`](docs/METODO.md)  
+Uso responsable: [`docs/SAFETY.md`](docs/SAFETY.md)
 
 ## Uso responsable
 
@@ -92,12 +112,24 @@ Insertar electrodos con higiene (alcohol isopropílico), ~1.5 cm de separación,
 fitosavia/
 ├── LICENSE
 ├── README.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
 ├── firmware/fitosavia/fitosavia.ino
 ├── hardware/BOM.md
 ├── hardware/WIRING.md
-└── docs/METODO.md
+├── docs/METODO.md
+├── docs/QUICKSTART.md
+├── docs/SAFETY.md
+└── .github/ISSUE_TEMPLATE/ …
 ```
 
 ## Contribuir
 
-Issues y PRs sobre firmware, docs, calibración o hardware son bienvenidos. Preferimos cambios pequeños y comprobables (bugs, claridad en el esquema, mejoras del algoritmo anti-electrólisis) frente a ruido cosmético.
+Issues y PRs sobre firmware, docs, calibración o hardware son bienvenidos. Preferimos cambios pequeños y comprobables.
+
+| Quieres… | Empieza por |
+|----------|-------------|
+| Primer PR sin kit | Issues [`good first issue`](https://github.com/haas26p-ctrl/fitosavia/labels/good%20first%20issue) (docs / i18n) |
+| Ayuda con código o tools | [`help wanted`](https://github.com/haas26p-ctrl/fitosavia/labels/help%20wanted) |
+| Guía de contribución | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
+| Normas de la comunidad | [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) |

@@ -1,0 +1,39 @@
+name: Bug report
+description: Algo no funciona en firmware, hardware o docs / Something is broken
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por reportar. Incluye log Serial si puedes.
+        Thanks for reporting. Include a Serial log if you can.
+  - type: textarea
+    id: what
+    attributes:
+      label: Qué pasó / What happened
+      description: Describe el problema con el mayor detalle posible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Qué esperabas / Expected
+    validations:
+      required: true
+  - type: textarea
+    id: serial
+    attributes:
+      label: Log Serial (115200)
+      description: Pega líneas relevantes del Monitor Serie.
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: setup
+    attributes:
+      label: Hardware / setup
+      description: ESP32, ADS1115, DHT22, alimentación, ¿calibración 10k/10k?
+      placeholder: "Ej. ESP32 DevKit V1, ADS1115 en 0x48, divisor 10k/10k, USB 5V→regulador 3V3"
+    validations:
+      required: false
