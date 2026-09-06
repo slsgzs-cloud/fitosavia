@@ -35,9 +35,7 @@ GPIO4     ──► DHT22 DATA
 
 ## Firmware
 
-El sketch se reconstruyó a partir del cuaderno de campo (algoritmo anti-electrólisis, pines, calibración y Serial). Si tienes el `.ino` original tal como lo subiste al ESP32, reemplázalo aquí para que el repo coincida 1:1 con el hardware.
-
-Sketch Arduino: [`firmware/fitosavia/fitosavia.ino`](firmware/fitosavia/fitosavia.ino)
+Sketch Arduino (el que corre en el ESP32): [`firmware/fitosavia/fitosavia.ino`](firmware/fitosavia/fitosavia.ino)
 
 ### Dependencias
 
@@ -48,22 +46,24 @@ Sketch Arduino: [`firmware/fitosavia/fitosavia.ino`](firmware/fitosavia/fitosavi
 
 ### Algoritmo Anti-Electrólisis
 
-1. Encender GPIO5  
+1. Encender GPIO5 (`pinAlimentacion`)  
 2. Esperar 100 ms  
 3. Leer ADS1115 canal A0  
 4. Apagar GPIO5 de inmediato  
-5. Leer DHT22 y estimar R (con normalización térmica simple)  
-6. Imprimir CSV por Serial a **115200** baudios  
+5. Leer DHT22 (temperatura/humedad para deriva térmica)  
+6. Imprimir por Serial a **115200** baudios  
 
 ### Calibración en vacío
 
 Con dos resistencias 10 kΩ ±1% en divisor a 3.3 V, el punto medio debe leer ≈ **1.652 V**. Si no, revisa soldaduras, gain del ADS1115 y alimentación a 3.3 V (nunca 5 V en la lógica).
 
-### Salida Serial (CSV)
+### Salida Serial
 
 ```
-ts_ms,temp_C,hum_%,v_A0,R_est_ohm,R_norm_ohm,exc_ms
+Temp: …°C | Humedad: …% | Lectura cruda: … | Voltaje (V): …
 ```
+
+El factor `0.1875` mV/LSB corresponde al gain por defecto del ADS1115 (±6.144 V).
 
 ## Alcance (sin maquillaje)
 
